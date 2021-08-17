@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="166dp"
+    android:layout_height="250dp"
+    android:layout_margin="5dp"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="166dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ratedImage"
+            android:layout_width="166dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="#3C3C3E"
+            android:src="@mipmap/ic_launcher_round" />
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
