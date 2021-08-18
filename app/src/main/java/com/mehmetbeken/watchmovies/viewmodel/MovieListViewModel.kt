@@ -45,9 +45,9 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : ViewMod
             }
         }
     }
-    fun getSearchMovies(searchQuery:String,pageNumber: Int){
+    fun getSearchMovies(searchQuery:String,language: String){
         viewModelScope.launch {
-            val response=movieRepository.getSearchMovies(searchQuery,pageNumber)
+            val response=movieRepository.getSearchMovies(searchQuery,language)
             if (response.isSuccessful){
                 response.body()?.let {
                     searchMovie.postValue(it)

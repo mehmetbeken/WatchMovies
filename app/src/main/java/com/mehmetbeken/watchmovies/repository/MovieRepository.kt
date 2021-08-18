@@ -6,8 +6,8 @@ import com.mehmetbeken.watchmovies.util.Constants.Companion.BASE_URL
 import retrofit2.Response
 
 class MovieRepository {
-    suspend fun getSearchMovies(searchQuery:String, pageNumber:Int):Response<MoviesModel> =
-     RetrofitBuilder.api.getSearchMovies(searchQuery,pageNumber)
+    suspend fun getSearchMovies(searchQuery:String,language: String):Response<MoviesModel> =
+     RetrofitBuilder.api.getSearchMovies(searchQuery,language)
 
     suspend fun getPopularMovies(language: String, pageNumber: Int): Response<MoviesModel> =
         RetrofitBuilder.api.getPopularMovies(language, pageNumber)

@@ -11,10 +11,10 @@ interface MovieAPI {
     //Search   /3/search/movie?api_key=c41ea5402a64eba56b4119a2e1366bae&query=Jack+Reacher
     @GET("/3/search/movie")
     suspend fun getSearchMovies(
-        @Query("q")
+        @Query("query")
         searchQuery: String,
-        @Query("page")
-        pageNumber: Int? = 1,
+        @Query("language")
+        language: String,
         @Query("api_key")
         api_key: String? = API_KEY
     ): Response<MoviesModel>

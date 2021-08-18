@@ -6,10 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#3C3C3E">
+
     <ImageView
         android:id="@+id/searchImage"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         tools:srcCompat="@tools:sample/avatars" />
     <TextView
         android:layout_width="match_parent"
@@ -17,6 +31,7 @@
         android:layout_below="@+id/searchImage"
         android:id="@+id/titleText"
         android:text="Title"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="28sp"
         android:layout_margin="3dp"
@@ -27,6 +42,7 @@
         android:layout_below="@+id/titleText"
         android:id="@+id/overviewText"
         android:text="Overview"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:layout_margin="3dp"/>
     <TextView
@@ -35,6 +51,7 @@
         android:layout_below="@+id/overviewText"
         android:id="@+id/releaseDateText"
         android:text="Release Date"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:layout_margin="3dp"/>
     <Button
@@ -44,5 +61,7 @@
         android:text="Add to WatchList"
         android:layout_centerHorizontal="true"/>
 
-
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
