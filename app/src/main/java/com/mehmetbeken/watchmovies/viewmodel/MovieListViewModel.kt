@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mehmetbeken.watchmovies.model.MoviesModel
+import com.mehmetbeken.watchmovies.model.ResultItem
 import com.mehmetbeken.watchmovies.repository.MovieRepository
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -14,6 +15,8 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : ViewMod
     val ratedMovies=MutableLiveData<MoviesModel>()
     val upComingMovies=MutableLiveData<MoviesModel>()
     val searchMovie=MutableLiveData<MoviesModel>()
+    val detailMovie=MutableLiveData<ResultItem>()
+
 
     fun getMovies(language: String, pageNumber: Int) {
         viewModelScope.launch {

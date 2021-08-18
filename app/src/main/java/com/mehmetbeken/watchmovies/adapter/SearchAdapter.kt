@@ -28,6 +28,7 @@ class SearchAdapter(val searchList:List<ResultItem>):RecyclerView.Adapter<Search
             overviewText.text=movieSearch.overview
             releaseDateText.text=movieSearch.release_date
         }
+
     }
 
     override fun getItemCount(): Int {

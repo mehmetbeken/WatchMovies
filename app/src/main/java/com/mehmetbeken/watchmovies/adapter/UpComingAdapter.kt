@@ -3,10 +3,12 @@ package com.mehmetbeken.watchmovies.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mehmetbeken.watchmovies.R
 import com.mehmetbeken.watchmovies.model.ResultItem
+import com.mehmetbeken.watchmovies.view.MovieListFragmentDirections
 import kotlinx.android.synthetic.main.rated_row.view.*
 import kotlinx.android.synthetic.main.upcoming_row.view.*
 
@@ -24,6 +26,11 @@ class UpComingAdapter(val upComingList: List<ResultItem>) :
         holder.itemView.apply {
             Glide.with(this).load("https://image.tmdb.org/t/p/w342/${movieUpComing.poster_path}")
                 .into(upComingImage)
+        }
+        holder.itemView.setOnClickListener{
+            val action= MovieListFragmentDirections.actionMovieListToArticleFragment(
+                movieUpComing.id,movieUpComing.overview,movieUpComing.poster_path,movieUpComing.release_date,movieUpComing.title,movieUpComing.vote_average,movieUpComing.backdrop_path)
+            Navigation.findNavController(it).navigate(action)
         }
     }
 

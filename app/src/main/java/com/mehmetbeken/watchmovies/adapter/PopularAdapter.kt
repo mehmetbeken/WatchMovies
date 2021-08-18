@@ -3,10 +3,12 @@ package com.mehmetbeken.watchmovies.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mehmetbeken.watchmovies.R
 import com.mehmetbeken.watchmovies.model.ResultItem
+import com.mehmetbeken.watchmovies.view.MovieListFragmentDirections
 import kotlinx.android.synthetic.main.popular_row.view.*
 
 
@@ -26,6 +28,11 @@ class PopularAdapter(val movieListesi: List<ResultItem>) :
 
             Glide.with(this).load("https://image.tmdb.org/t/p/w342/${movie.poster_path}")
                 .into(popularImage)
+        }
+        holder.itemView.setOnClickListener{
+            val action=MovieListFragmentDirections.actionMovieListToArticleFragment(
+                movie.id,movie.overview,movie.poster_path,movie.release_date,movie.title,movie.vote_average,movie.backdrop_path)
+            Navigation.findNavController(it).navigate(action)
         }
     }
 

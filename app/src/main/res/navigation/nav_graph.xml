@@ -36,5 +36,34 @@
         android:id="@+id/articleFragment"
         android:name="com.mehmetbeken.watchmovies.view.ArticleFragment"
         android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article" >
+        <argument
+            android:name="movieId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="movieOverview"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="moviePoster"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="movieDate"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="movieTitle"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="movieVote"
+            app:argType="float"
+            android:defaultValue="0.0" />
+        <argument
+            android:name="movieBackDrop"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 </navigation>
