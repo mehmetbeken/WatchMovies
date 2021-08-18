@@ -58,7 +58,7 @@ class MovieListFragment : Fragment() {
 
         //popüler filmler
         movieListViewModel.getMovies("tr-TR", 1)
-        recyclerViewPopular.layoutManager = LinearLayoutManager(context, HORIZONTAL,false)
+        recyclerViewPopular.layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
 
         movieListViewModel.popularMovies.observe(viewLifecycleOwner, Observer {
             popularAdapter = PopularAdapter(it.results)
@@ -67,21 +67,21 @@ class MovieListFragment : Fragment() {
 
         })
         //en cok oy alan filmler
-        movieListViewModel.getRatedMovies("tr-TR",1)
-        recyclerViewRated.layoutManager=LinearLayoutManager(context, HORIZONTAL,false)
+        movieListViewModel.getRatedMovies("tr-TR", 1)
+        recyclerViewRated.layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
 
         movieListViewModel.ratedMovies.observe(viewLifecycleOwner, Observer {
-            ratedAdapter= RatedAdapter(it.results)
-            recyclerViewRated.adapter=ratedAdapter
+            ratedAdapter = RatedAdapter(it.results)
+            recyclerViewRated.adapter = ratedAdapter
             ratedAdapter.notifyDataSetChanged()
         })
         //Çıkacak Filmler
-        movieListViewModel.getUpComingMovies("tr-TR",1)
-        recyclerViewUpComing.layoutManager=LinearLayoutManager(context, HORIZONTAL,false)
+        movieListViewModel.getUpComingMovies("tr-TR", 1)
+        recyclerViewUpComing.layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
 
         movieListViewModel.upComingMovies.observe(viewLifecycleOwner, Observer {
-            upComingAdapter= UpComingAdapter(it.results)
-            recyclerViewUpComing.adapter=upComingAdapter
+            upComingAdapter = UpComingAdapter(it.results)
+            recyclerViewUpComing.adapter = upComingAdapter
             upComingAdapter.notifyDataSetChanged()
         })
     }

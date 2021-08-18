@@ -27,9 +27,16 @@ class UpComingAdapter(val upComingList: List<ResultItem>) :
             Glide.with(this).load("https://image.tmdb.org/t/p/w342/${movieUpComing.poster_path}")
                 .into(upComingImage)
         }
-        holder.itemView.setOnClickListener{
-            val action= MovieListFragmentDirections.actionMovieListToArticleFragment(
-                movieUpComing.id,movieUpComing.overview,movieUpComing.poster_path,movieUpComing.release_date,movieUpComing.title,movieUpComing.vote_average,movieUpComing.backdrop_path)
+        holder.itemView.setOnClickListener {
+            val action = MovieListFragmentDirections.actionMovieListToArticleFragment(
+                movieUpComing.id,
+                movieUpComing.overview,
+                movieUpComing.poster_path,
+                movieUpComing.release_date,
+                movieUpComing.title,
+                movieUpComing.vote_average,
+                movieUpComing.backdrop_path
+            )
             Navigation.findNavController(it).navigate(action)
         }
     }

@@ -12,10 +12,10 @@ import retrofit2.Response
 class MovieListViewModel(private val movieRepository: MovieRepository) : ViewModel() {
     val pageNumber = 1
     val popularMovies = MutableLiveData<MoviesModel>()
-    val ratedMovies=MutableLiveData<MoviesModel>()
-    val upComingMovies=MutableLiveData<MoviesModel>()
-    val searchMovie=MutableLiveData<MoviesModel>()
-    val detailMovie=MutableLiveData<ResultItem>()
+    val ratedMovies = MutableLiveData<MoviesModel>()
+    val upComingMovies = MutableLiveData<MoviesModel>()
+    val searchMovie = MutableLiveData<MoviesModel>()
+    val detailMovie = MutableLiveData<ResultItem>()
 
 
     fun getMovies(language: String, pageNumber: Int) {
@@ -28,30 +28,33 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : ViewMod
             }
         }
     }
-    fun getRatedMovies(language: String,pageNumber: Int){
+
+    fun getRatedMovies(language: String, pageNumber: Int) {
         viewModelScope.launch {
-            val response=movieRepository.getTopRatedMovies(language,pageNumber)
-            if (response.isSuccessful){
+            val response = movieRepository.getTopRatedMovies(language, pageNumber)
+            if (response.isSuccessful) {
                 response.body()?.let {
                     ratedMovies.postValue(it)
                 }
             }
         }
     }
-    fun getUpComingMovies(language: String,pageNumber: Int){
+
+    fun getUpComingMovies(language: String, pageNumber: Int) {
         viewModelScope.launch {
-            val response=movieRepository.getUpComing(language,pageNumber)
-            if (response.isSuccessful){
+            val response = movieRepository.getUpComing(language, pageNumber)
+            if (response.isSuccessful) {
                 response.body()?.let {
                     upComingMovies.postValue(it)
                 }
             }
         }
     }
-    fun getSearchMovies(searchQuery:String,language: String){
+
+    fun getSearchMovies(searchQuery: String, language: String) {
         viewModelScope.launch {
-            val response=movieRepository.getSearchMovies(searchQuery,language)
-            if (response.isSuccessful){
+            val response = movieRepository.getSearchMovies(searchQuery, language)
+            if (response.isSuccessful) {
                 response.body()?.let {
                     searchMovie.postValue(it)
                 }

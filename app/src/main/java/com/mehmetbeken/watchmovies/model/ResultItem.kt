@@ -7,5 +7,5 @@ data class ResultItem(
     val release_date: String,
     val title: String,
     val vote_average: Float,
-    val backdrop_path:String
+    val backdrop_path: String
 )
