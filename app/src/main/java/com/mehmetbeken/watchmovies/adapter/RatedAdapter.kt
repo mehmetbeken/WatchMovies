@@ -29,13 +29,15 @@ class RatedAdapter(val ratedList: List<ResultItem>) :
         }
         holder.itemView.setOnClickListener {
             val action = MovieListFragmentDirections.actionMovieListToArticleFragment(
-                movieRated.id,
-                movieRated.overview,
-                movieRated.poster_path,
-                movieRated.release_date,
-                movieRated.title,
-                movieRated.vote_average,
-                movieRated.backdrop_path
+                resultItem = ResultItem(
+                    movieRated.id,
+                    movieRated.overview,
+                    movieRated.poster_path,
+                    movieRated.release_date,
+                    movieRated.title,
+                    movieRated.vote_average,
+                    movieRated.backdrop_path
+                )
             )
             Navigation.findNavController(it).navigate(action)
         }

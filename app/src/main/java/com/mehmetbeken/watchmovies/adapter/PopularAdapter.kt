@@ -31,14 +31,17 @@ class PopularAdapter(val movieListesi: List<ResultItem>) :
         }
         holder.itemView.setOnClickListener {
             val action = MovieListFragmentDirections.actionMovieListToArticleFragment(
-                movie.id,
-                movie.overview,
-                movie.poster_path,
-                movie.release_date,
-                movie.title,
-                movie.vote_average,
-                movie.backdrop_path
+                resultItem = ResultItem(
+                    movie.id,
+                    movie.overview,
+                    movie.poster_path,
+                    movie.release_date,
+                    movie.title,
+                    movie.vote_average,
+                    movie.backdrop_path
+                )
             )
+
             Navigation.findNavController(it).navigate(action)
         }
     }

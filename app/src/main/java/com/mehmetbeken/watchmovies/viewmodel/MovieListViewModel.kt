@@ -10,12 +10,11 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MovieListViewModel(private val movieRepository: MovieRepository) : ViewModel() {
-    val pageNumber = 1
+
     val popularMovies = MutableLiveData<MoviesModel>()
     val ratedMovies = MutableLiveData<MoviesModel>()
     val upComingMovies = MutableLiveData<MoviesModel>()
     val searchMovie = MutableLiveData<MoviesModel>()
-    val detailMovie = MutableLiveData<ResultItem>()
 
 
     fun getMovies(language: String, pageNumber: Int) {
@@ -60,5 +59,15 @@ class MovieListViewModel(private val movieRepository: MovieRepository) : ViewMod
                 }
             }
         }
+    }
+
+    fun saveMovie(resultItem: ResultItem) = viewModelScope.launch {
+        movieRepository.upsert(resultItem)
+    }
+
+    fun getSaveMovies() = movieRepository.getSavedMovies()
+
+    fun deleteMovies(resultItem: ResultItem) = viewModelScope.launch {
+        movieRepository.deleteMovies(resultItem)
     }
 }

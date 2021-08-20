@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.OrientationHelper.*
 
 
 import com.mehmetbeken.watchmovies.R
+import com.mehmetbeken.watchmovies.WatchMovies
 import com.mehmetbeken.watchmovies.adapter.PopularAdapter
 import com.mehmetbeken.watchmovies.adapter.RatedAdapter
 import com.mehmetbeken.watchmovies.adapter.UpComingAdapter
@@ -27,12 +28,11 @@ import kotlinx.android.synthetic.main.fragment_movie_list.*
 
 class MovieListFragment : Fragment() {
 
-    private lateinit var movieListViewModel: MovieListViewModel
+
     private lateinit var popularAdapter: PopularAdapter
     private lateinit var ratedAdapter: RatedAdapter
     private lateinit var upComingAdapter: UpComingAdapter
-    val movieRepository = MovieRepository()
-    val viewModelFactory = MovieListViewModelFactory(movieRepository)
+    lateinit var viewModel: MovieListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,33 +53,33 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieListViewModel =
-            ViewModelProvider(this, viewModelFactory)[MovieListViewModel::class.java]
+        viewModel=(activity as WatchMovies).viewModel
+
 
         //popüler filmler
-        movieListViewModel.getMovies("tr-TR", 1)
+        viewModel.getMovies("tr-TR", 1)
         recyclerViewPopular.layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
 
-        movieListViewModel.popularMovies.observe(viewLifecycleOwner, Observer {
+        viewModel.popularMovies.observe(viewLifecycleOwner, Observer {
             popularAdapter = PopularAdapter(it.results)
             recyclerViewPopular.adapter = popularAdapter
             popularAdapter.notifyDataSetChanged()
 
         })
         //en cok oy alan filmler
-        movieListViewModel.getRatedMovies("tr-TR", 1)
+        viewModel.getRatedMovies("tr-TR", 1)
         recyclerViewRated.layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
 
-        movieListViewModel.ratedMovies.observe(viewLifecycleOwner, Observer {
+        viewModel.ratedMovies.observe(viewLifecycleOwner, Observer {
             ratedAdapter = RatedAdapter(it.results)
             recyclerViewRated.adapter = ratedAdapter
             ratedAdapter.notifyDataSetChanged()
         })
         //Çıkacak Filmler
-        movieListViewModel.getUpComingMovies("tr-TR", 1)
+        viewModel.getUpComingMovies("tr-TR", 1)
         recyclerViewUpComing.layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
 
-        movieListViewModel.upComingMovies.observe(viewLifecycleOwner, Observer {
+        viewModel.upComingMovies.observe(viewLifecycleOwner, Observer {
             upComingAdapter = UpComingAdapter(it.results)
             recyclerViewUpComing.adapter = upComingAdapter
             upComingAdapter.notifyDataSetChanged()

@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
 import com.mehmetbeken.watchmovies.R
+import com.mehmetbeken.watchmovies.WatchMovies
 import com.mehmetbeken.watchmovies.adapter.PopularAdapter
 import com.mehmetbeken.watchmovies.adapter.SearchAdapter
 import com.mehmetbeken.watchmovies.repository.MovieRepository
@@ -29,10 +30,8 @@ import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
 
-    private lateinit var movieListViewModel: MovieListViewModel
+    private lateinit var viewModel: MovieListViewModel
     private lateinit var searchAdapter: SearchAdapter
-    val movieRepository = MovieRepository()
-    val viewModelFactory = MovieListViewModelFactory(movieRepository)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,10 +52,7 @@ class SearchFragment : Fragment() {
     @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        movieListViewModel =
-            ViewModelProvider(this, viewModelFactory)[MovieListViewModel::class.java]
+        viewModel = (activity as WatchMovies).viewModel
 
 
         var job: Job? = null
@@ -65,11 +61,11 @@ class SearchFragment : Fragment() {
             job = MainScope().launch {
                 editable?.let {
                     if (editable.toString().isNotEmpty()) {
-                        movieListViewModel.getSearchMovies(editable.toString(),"tr-TR")
+                        viewModel.getSearchMovies(editable.toString(), "tr-TR")
 
                         searchRecycler.layoutManager =
                             LinearLayoutManager(context, HORIZONTAL, false)
-                        movieListViewModel.searchMovie.observe(viewLifecycleOwner, Observer {
+                        viewModel.searchMovie.observe(viewLifecycleOwner, Observer {
                             searchAdapter = SearchAdapter(it.results)
                             searchRecycler.adapter = searchAdapter
                             searchAdapter.notifyDataSetChanged()

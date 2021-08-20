@@ -20,50 +20,28 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_searchFragment2_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            android:id="@+id/action_searchFragment2_to_savedMoviesFragment22"
+            app:destination="@id/savedMoviesFragment2" />
     </fragment>
     <fragment
         android:id="@+id/savedMoviesFragment2"
         android:name="com.mehmetbeken.watchmovies.view.SavedMoviesFragment"
         android:label="fragment_saved_movies"
         tools:layout="@layout/fragment_saved_movies" >
-        <action
-            android:id="@+id/action_savedMoviesFragment2_to_articleFragment"
-            app:destination="@id/articleFragment" />
+        <argument
+            android:name="resultItem"
+            app:argType="com.mehmetbeken.watchmovies.model.ResultItem" />
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
         android:name="com.mehmetbeken.watchmovies.view.ArticleFragment"
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" >
+        <action
+            android:id="@+id/action_articleFragment_to_savedMoviesFragment22"
+            app:destination="@id/savedMoviesFragment2" />
         <argument
-            android:name="movieId"
-            app:argType="integer"
-            android:defaultValue="0" />
-        <argument
-            android:name="movieOverview"
-            app:argType="string"
-            android:defaultValue='""' />
-        <argument
-            android:name="moviePoster"
-            app:argType="string"
-            android:defaultValue='""' />
-        <argument
-            android:name="movieDate"
-            app:argType="string"
-            android:defaultValue='""' />
-        <argument
-            android:name="movieTitle"
-            app:argType="string"
-            android:defaultValue='""' />
-        <argument
-            android:name="movieVote"
-            app:argType="float"
-            android:defaultValue="0.0" />
-        <argument
-            android:name="movieBackDrop"
-            app:argType="string"
-            android:defaultValue='""' />
+            android:name="resultItem"
+            app:argType="com.mehmetbeken.watchmovies.model.ResultItem" />
     </fragment>
 </navigation>
